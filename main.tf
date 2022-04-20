@@ -1,3 +1,5 @@
+variable "vpc_id" {}
+
 terraform {
   required_providers {
     aws = {
@@ -60,4 +62,10 @@ resource "aws_lambda_function" "terraform_lambda_func" {
   handler = "index.lambda_handler"
   runtime = "python3.8"
   depends_on = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
+  
+  vpc_config {
+    # Every subnet should be able to reach an EFS mount target in the same Availability Zone. Cross-AZ mounts are not permitted.
+    subnet_ids         = [aws_subnet.subnet_for_lambda.id]
+    security_group_ids = [var.vpc_id]
+  }
 }
