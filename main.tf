@@ -66,7 +66,7 @@ resource "aws_lambda_function" "terraform_lambda_func" {
   
   vpc_config {
     # Every subnet should be able to reach an EFS mount target in the same Availability Zone. Cross-AZ mounts are not permitted.
-    subnet_ids         = [var.subnet_ids]
+    subnet_ids         = var.subnet_ids #array, terraform cloud HCL var
     security_group_ids = [var.vpc_id]
   }
 }
