@@ -1,4 +1,5 @@
 variable "vpc_id" {}
+variable "subnet_ids" {}
 
 terraform {
   required_providers {
@@ -65,7 +66,7 @@ resource "aws_lambda_function" "terraform_lambda_func" {
   
   vpc_config {
     # Every subnet should be able to reach an EFS mount target in the same Availability Zone. Cross-AZ mounts are not permitted.
-    subnet_ids         = [aws_subnet.subnet_for_lambda.id]
+    subnet_ids         = [var.subnet_ids]
     security_group_ids = [var.vpc_id]
   }
 }
