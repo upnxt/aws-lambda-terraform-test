@@ -34,12 +34,18 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
     "Version": "2012-10-17",
     "Statement": [
     {
-       "Action": [
-         "logs:CreateLogGroup",
-         "logs:CreateLogStream",
-         "logs:PutLogEvents"
+      "Action": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeVpcs",
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface"         
      ],
-     "Resource": "arn:aws:logs:*:*:*",
+     "Resource": "*",
      "Effect": "Allow"
    }]
   })
