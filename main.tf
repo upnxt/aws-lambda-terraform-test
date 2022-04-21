@@ -44,7 +44,7 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
         "ec2:DescribeNetworkInterfaces",
         "ec2:DeleteNetworkInterface",
         "ec2:AssignPrivateIpAddresses",
-        "ec2:UnassignPrivateIpAddresses"
+        "ec2:UnassignPrivateIpAddresses",
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
